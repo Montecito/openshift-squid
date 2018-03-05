@@ -18,11 +18,11 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 80F70E11F0F0D5F
 RUN mkdir -p /etc/squid/ssl_cert \
  && cd /etc/squid/ssl_cert \
  #&& openssl req -new -newkey rsa:1024 -days 1365 -nodes -x509 -keyout myca.pem -out myca.pem \
- && openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
- && openssl rsa -passin pass:x -in server.pass.key -out server.key
- && rm server.pass.key
- && openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Warwickshire/L=Leamington/O=OrgName/OU=IT Department/CN=cloud.itandtel.at"
- && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+ && openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
+ && openssl rsa -passin pass:x -in server.pass.key -out server.key \
+ && rm server.pass.key \
+ && openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Warwickshire/L=Leamington/O=OrgName/OU=IT Department/CN=cloud.itandtel.at" \
+ && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
  && cd - \
  && chmod -R 775 /etc/squid/ssl_cert
 
