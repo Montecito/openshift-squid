@@ -31,6 +31,6 @@ COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 
 USER ${RUN_USER}:${RUN_GROUP}
-EXPOSE 3128
+EXPOSE 3128 3129
 VOLUME ["${SQUID_CACHE_DIR}"]
 ENTRYPOINT ["/sbin/entrypoint.sh"]
