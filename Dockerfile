@@ -21,7 +21,7 @@ RUN mkdir -p /etc/squid/ssl_cert \
  && openssl genrsa -des3 -passout pass:x -out server.pass.key 2048 \
  && openssl rsa -passin pass:x -in server.pass.key -out server.key \
  && rm server.pass.key \
- && openssl req -new -key server.key -out server.csr -subj "/C=UK/ST=Warwickshire/L=Leamington/O=OrgName/OU=IT Department/CN=cloud.itandtel.at" \
+ && openssl req -new -key server.key -out server.csr -subj "/C=AT/ST=Vienna/L=Vienna/O=SquidOpenshift/OU=IT Department/CN=*.cloud.itandtel.at" \
  && openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt \
  && cd - \
  && chmod -R 775 /etc/squid/ssl_cert
